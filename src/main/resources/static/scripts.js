@@ -1,12 +1,17 @@
 var stompClient = null;
-let apiEmpleados= "http://localhost:9000/api/empleado";
+let apiEmpleados = "http://localhost:9000/api/empleado";
 $(document).ready(function () {
     console.log("Index page is ready");
     connect();
-     charginTableEmpleados();
+    charginTableEmpleados();
     $("#send").click(function () {
         sendMessage();
     });
+    document.querySelector("#form-empleado").addEventListener("submit", (e) => {
+        e.preventDefault();
+        createEmpleado();
+
+    })
 });
 
 function connect() {
@@ -39,6 +44,18 @@ function sendMessage() {
     //envia un mensaje con la libreria sock js a determinara uri
     stompClient.send("/ws/message", {}, JSON.stringify({ 'messageContent': $("#message").val() }));
 }
+function createEmpleado() {
+    console.log("sending employee");
+    //envia un mensaje con la libreria sock js a determinara uri
+    stompClient.send("/ws/empleado", {},
+        JSON.stringify({
+            'name': $("#name").val(),
+            'lastName': $("#lastName").val(),
+            'age': $("#age").val(),
+            'ocupation': $("#ocupation").val(),
+        }
+        ));
+}
 function showEmpleado(empleado) {
     $("#empleados").append(`
         <tr>
@@ -50,10 +67,10 @@ function showEmpleado(empleado) {
         </tr>
     `);
 }
-async function charginTableEmpleados(){
+async function charginTableEmpleados() {
     let empleados = await (await fetch(apiEmpleados)).json();
     console.log(empleados);
-    empleados.forEach(empleado =>{
+    empleados.forEach(empleado => {
         $("#empleados").append(`
         <tr>
         <td>${empleado.id}</td>

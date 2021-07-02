@@ -52,7 +52,34 @@
             <tbody id="messages"></tbody>
           </table>
         </div>
-        <div class="card col-md-8 my-4">
+        
+      </div>
+      <div class="row justify-content-center my-4">
+        <div class="col-md-4">
+          <div class="card p-2">
+            <div class="card-header">
+                <h4 class="text-center">Crear Empleado</h4>
+            </div>
+            <form action="" id="form-empleado">
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" class="form-control" placeholder="" aria-describedby="helpId">
+              </div>
+              <div class="form-group">
+                <label for="lastName">LastName:</label>
+                <input type="text" name="lastName" id="lastName" class="form-control"  aria-describedby="helpId">
+              </div>              <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" name="age" id="age" class="form-control" aria-describedby="helpId">
+              </div>              <div class="fo  rm-group">
+                <label for="ocupation">Ocupation:</label>
+                <input type="text" name="ocupation" id="ocupation" class="form-control"  aria-describedby="helpId">
+              </div>
+              <button type="submit" class="btn btn-primary d-block w-100 my-2" style="width: 100%;">Enviar</button>
+            </form>
+          </div>
+        </div>
+        <div class="card col-md-8 ">
           <h2 class="text-center my-2">Envio de Empleados</h2>
           <table class="table table-bordered" id="table-empleados">
             <thead>
